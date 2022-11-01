@@ -166,14 +166,18 @@
                     drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
 
                     if (!scanned_item) {
+                        console.log(code.data)
+
                         // 添加商品
-                        let item_info = code.data // 小麦面粉_20
-                        let item = { name: item_info.split("_")[0], price: item_info.split("_")[1] }
+                        let item_info = code.data.split("_") // 小麦面粉_20
+                        if (item_info.length == 2) {
+                            let item = { name: item_info[0], price: item_info[1] }
 
-                        goods.unshift(item)
-                        add_good_to_trolley(item)
+                            goods.unshift(item)
+                            add_good_to_trolley(item)
 
-                        scanned_item = true
+                            scanned_item = true
+                        }
                     }
                 }
                 else {
