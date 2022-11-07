@@ -17,7 +17,13 @@
 			<div class="container-fluid">
 				<h3> 🛒 新型智能购物车 </h3>
 
-				<span id="fullscreen">🔍</span>
+				<span id="fullscreen">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+						class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+						<path fill-rule="evenodd"
+							d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z" />
+					</svg>
+				</span>
 			</div>
 		</nav>
 
@@ -39,10 +45,13 @@
 		<!-- 结账 -->
 		<div class="check">
 			<div class=" row justify-content-around">
-				<div class="total_money col-5" id="total_money">
+				<div class="total_money col-3" id="total_money">
 					￥ 0
 				</div>
-				<button type="button" class="btn btn-lg btn-warning col-5">
+				<button type="button" class="btn btn-lg btn-primary col-2" id="empty_trolley">
+					清空购物车
+				</button>
+				<button type="button" class="btn btn-lg btn-warning col-6">
 					结账
 				</button>
 			</div>
@@ -92,6 +101,11 @@
 			$(".card").eq(index).remove()
 			$("#total_money").text(`￥ ${total_money}`)
 		}))
+
+		$("#empty_trolley").click(() => {
+			goods = []
+			$(".card").remove()
+		})
 
 		var video = document.createElement("video");
 		var canvasElement = document.getElementById("canvas");

@@ -8,7 +8,7 @@
 }
 
 .main {
-  height: calc(100vh - 56px - 88px);
+  height: calc(100vh - 150px);
   padding: 20px;
 }
 
