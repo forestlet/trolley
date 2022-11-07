@@ -7,6 +7,13 @@
 3. 删除购物车
 4. 结账
 
+## 运行
+
+```shell
+yarn install
+npm start
+```
+
 ## 参考
 
 - 生成二维码
