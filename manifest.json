@@ -217,8 +217,15 @@
                     "xhdpi" : "", /*720P高分屏启动图片，分辨率：720x1242*/
                     "xxhdpi" : "" /*1080P高分屏启动图片，分辨率：1080x1882*/
                 }
+            },
+            "ios" : {
+                "dSYMs" : false
+            },
+            "plugins" : {
+                "ad" : {}
             }
         }
     },
-    "screenOrientation" : [ "landscape-primary" ]
+    "screenOrientation" : [ "landscape-primary" ],
+    "fullscreen" : true
 }
