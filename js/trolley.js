@@ -38,8 +38,9 @@ $(".good-area").on("click", ".delete", (e) => {
 
 $("#empty_trolley").click(() => {
   goods = [];
-  total_money = 0;
   $(".card").remove();
+  total_money = 0;
+  $("#total_money").text(`￥ ${total_money}`);
 });
 
 var video = document.createElement("video");
