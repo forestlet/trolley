@@ -1,0 +1,15 @@
+{
+  "name": "trolley",
+  "version": "0.0.1",
+  "description": "new generation shopping system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@forestlet:forestlet/trolley.git"
+  },
+  "author": "forestlet",
+  "license": "ISC"
+}
