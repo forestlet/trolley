@@ -3,6 +3,10 @@
   height: 100%;
 }
 
+#fullscreen {
+  cursor: pointer;
+}
+
 .main {
   height: calc(100vh - 56px - 88px);
   padding: 20px;
