@@ -134,10 +134,11 @@ function tick() {
             price: item_info[1],
           };
 
-          goods.push(item);
-          add_good_to_trolley(item);
-
-          scanned_item = true;
+          if (confirm(`添加商品 ${item.name} 吗？`)) {
+            goods.push(item);
+            add_good_to_trolley(item);
+            scanned_item = true;
+          }
         }
       }
     } else {
