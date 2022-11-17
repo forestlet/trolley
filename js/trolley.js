@@ -6,16 +6,30 @@ let total_money = 0;
 
 let add_good_to_trolley = (item) => {
   let item_div = `<div class="card col-5">
-                <div class= "card-body">
-                    <h5 class="card-title">${item.name}</h5>
-                    <div class="row">
-                        <p class="col-6 price">￥ ${item.price}</p>
-                        <div class="col-6">
-                            <button type="button" class="btn btn-danger delete"> 删除 </button>
-                        </div>
-                    </div>
-                </div >
-            </div >`;
+  <div class="card-body">
+      <div class="row">
+          <div class="col-8">
+              <h2 class="card-title">${item.name}</h2>
+          </div>
+
+          <div class="col-4">
+              <h5 class="price">￥${item.price}</h5>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-7">
+              <button type="button" class="btn btn-light minus"> - </button>
+              <span class="num"> 1 </span>
+              <button type="button" class="btn btn-light add"> + </button>
+          </div>
+
+          <div class="col-5">
+              <button type="button" class="btn btn-danger delete"> 删除 </button>
+          </div>
+      </div>
+  </div>
+</div>`;
   goods_div.append($(item_div));
   total_money += parseFloat(item.price);
   $("#total_money").text(`￥ ${total_money}`);
@@ -33,6 +47,37 @@ $(".good-area").on("click", ".delete", (e) => {
   goods.splice(index, 1);
 
   $(".card").eq(index).remove();
+  $("#total_money").text(`￥ ${total_money}`);
+});
+
+$(".good-area").on("click", ".minus", (e) => {
+  let index = $(".minus").index(e.target);
+  let item = goods[index];
+
+  if (item.num > 1) {
+    item.num -= 1;
+    total_money -= parseFloat(item.price);
+
+    $(".num").eq(index).text(item.num);
+
+    $("#total_money").text(`￥ ${total_money}`);
+  } else {
+    total_money -= parseFloat(item.price);
+    goods.splice(index, 1);
+
+    $(".card").eq(index).remove();
+    $("#total_money").text(`￥ ${total_money}`);
+  }
+});
+
+$(".good-area").on("click", ".add", (e) => {
+  let index = $(".add").index(e.target);
+  let item = goods[index];
+
+  item.num += 1;
+  $(".num").eq(index).text(item.num);
+  total_money += parseFloat(item.price);
+
   $("#total_money").text(`￥ ${total_money}`);
 });
 
@@ -80,8 +125,6 @@ function drawLine(begin, end, color) {
   canvas.stroke();
 }
 
-let scanned_item = false;
-
 function tick() {
   if (video.readyState === video.HAVE_ENOUGH_DATA) {
     loadingMessage.hidden = true;
@@ -123,26 +166,32 @@ function tick() {
         "#FF3B58"
       );
 
-      if (!scanned_item) {
-        console.log(code.data);
+      console.log(code.data);
 
-        // 添加商品
-        let item_info = code.data.split("_"); // 小麦面粉_20
-        if (item_info.length == 2) {
-          let item = {
-            name: item_info[0],
-            price: item_info[1],
-          };
+      // 添加商品
+      let item_info = code.data.split("_"); // 小麦面粉_20
+      if (item_info.length == 2) {
+        let item = {
+          name: item_info[0],
+          price: item_info[1],
+          num: 1,
+        };
 
-          if (confirm(`添加商品 ${item.name} 吗？`)) {
+        if (goods.length == 0) {
+          goods.push(item);
+          add_good_to_trolley(item);
+        } else {
+          let flag = false;
+          for (const good of goods) {
+            console.log(good.name, item.name);
+            if (good.name == item.name) flag = true;
+          }
+          if (!flag) {
             goods.push(item);
             add_good_to_trolley(item);
-            scanned_item = true;
           }
         }
       }
-    } else {
-      scanned_item = false;
     }
   }
   requestAnimationFrame(tick);

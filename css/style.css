@@ -28,14 +28,10 @@
 
 .card {
   --bs-card-title-spacer-y: 24px;
-  height: 140px;
+  height: fit-content;
   margin: 0 20px 12px 20px;
   font-weight: bold;
   text-align: left;
-}
-
-.price {
-  font-size: 1.2rem;
 }
 
 .check {
