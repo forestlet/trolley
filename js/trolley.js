@@ -43,7 +43,7 @@ $(".good-area").on("click", ".delete", (e) => {
   let index = $(".delete").index(e.target);
   let item = goods[index];
 
-  total_money -= parseFloat(item.price);
+  total_money -= parseFloat(item.price * item.num);
   goods.splice(index, 1);
 
   $(".card").eq(index).remove();
