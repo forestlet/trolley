@@ -216,4 +216,29 @@ function requestFullScreen(element) {
 
 $("#fullscreen").click(() => {
   requestFullScreen(document.documentElement);
+  $("#fullscreen").hide();
+});
+
+// 语音阅读
+function readAloud() {
+  let msg = "";
+
+  if (goods.length == 0) {
+    msg = "您的购物车为空！";
+  } else {
+    msg = "您的购物车中有：";
+
+    for (const good of goods) {
+      msg += `${good.name} ${good.num} 件 ${good.price * good.num}元）、`;
+    }
+
+    msg += `；您购物车中商品总价为 ${total_money} 元。`;
+  }
+
+  let speechSynthesisUtterance = new SpeechSynthesisUtterance(msg);
+  window.speechSynthesis.speak(speechSynthesisUtterance);
+}
+
+$("#readAloud").click(() => {
+  readAloud();
 });
