@@ -289,3 +289,36 @@ recognition.onresult = function ({ results }) {
 recognition.onsoundend = () => {
   console.log(123);
 };
+
+// 查找商品
+const search_good = () => {
+  let good = $("#search_input").val();
+  let msg = "";
+
+  switch (good) {
+    case "面粉":
+      msg = `${good}在 A 区 12 货柜。`;
+      break;
+    case "薯片":
+      msg = `${good}在 C 区 2 货柜。`;
+      break;
+    case "土豆":
+      msg = `${good}在 B 区 6 货柜。`;
+      break;
+    case "遥控汽车":
+      msg = `${good}在 Z 区 3 货柜。`;
+      break;
+    case "猪肉":
+      msg = `${good}在 F 区 9 货柜。`;
+      break;
+    default:
+      msg = `商品${good}暂未收录~`;
+      break;
+  }
+
+  readAloud(msg);
+};
+
+$("#search_good").click(() => {
+  search_good();
+});

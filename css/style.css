@@ -5,15 +5,19 @@
 
 .navbar {
   flex-direction: column;
-  height: 104px;
+  /* height: 104px; */
 }
 
 #fullscreen {
   cursor: pointer;
 }
 
+.input-group {
+  width: auto;
+}
+
 .main {
-  height: calc(100vh - 104px - 88px - 96px);
+  height: calc(100vh - 80px - 88px - 96px);
   padding: 20px;
 }
 
