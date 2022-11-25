@@ -255,6 +255,8 @@ $("#sos").click(() => {
 const SpeechRecognition = window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
 recognition.lang = "cmn-Hans-CN"; //普通话 (中国大陆)
+recognition.continuous = false;
+
 const output = document.getElementById("output");
 
 // 语音识别开始的钩子

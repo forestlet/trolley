@@ -13,7 +13,7 @@
 }
 
 .main {
-  height: calc(100vh - 104px - 88px);
+  height: calc(100vh - 104px - 88px - 96px);
   padding: 20px;
 }
 
