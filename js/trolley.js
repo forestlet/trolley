@@ -259,7 +259,6 @@ const output = document.getElementById("output");
 
 // 语音识别开始的钩子
 recognition.onstart = function () {
-  output.innerText = "";
   output.innerText = "语音识别开始";
 };
 // 如果没有声音则结束的钩子
@@ -274,7 +273,7 @@ recognition.onerror = function ({ error }) {
     "not-allowed": "未检测到麦克风设备或未允许浏览器使用麦克风",
   };
   // output.innerText = errorMessage[error] || "语音识别错误";
-  output.innerText = error
+  output.innerText = error;
 };
 
 // 识别结果的钩子，
