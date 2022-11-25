@@ -5,6 +5,7 @@
 
 .navbar {
   flex-direction: column;
+  height: 104px;
 }
 
 #fullscreen {
