@@ -284,15 +284,12 @@ recognition.onresult = function ({ results }) {
   console.log(results);
   const { transcript, confidence } = results[0][0];
   output.innerText = `识别的内容：${transcript}`;
-};
 
-recognition.onsoundend = () => {
-  console.log(123);
+  search_good(transcript);
 };
 
 // 查找商品
-const search_good = () => {
-  let good = $("#search_input").val();
+const search_good = (good) => {
   let msg = "";
 
   switch (good) {
@@ -320,5 +317,6 @@ const search_good = () => {
 };
 
 $("#search_good").click(() => {
-  search_good();
+  let good = $("#search_input").val();
+  search_good(good);
 });
