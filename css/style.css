@@ -3,12 +3,16 @@
   height: 100%;
 }
 
+.navbar {
+  flex-direction: column;
+}
+
 #fullscreen {
   cursor: pointer;
 }
 
 .main {
-  height: calc(100vh - 152px);
+  height: calc(100vh - 104px - 88px);
   padding: 20px;
 }
 

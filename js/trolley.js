@@ -220,7 +220,12 @@ $("#fullscreen").click(() => {
 });
 
 // 语音阅读
-function readAloud() {
+function readAloud(msg) {
+  let speechSynthesisUtterance = new SpeechSynthesisUtterance(msg);
+  window.speechSynthesis.speak(speechSynthesisUtterance);
+}
+
+$("#readAloud").click(() => {
   let msg = "";
 
   if (goods.length == 0) {
@@ -235,10 +240,46 @@ function readAloud() {
     msg += `；您购物车中商品总价为 ${total_money} 元。`;
   }
 
-  let speechSynthesisUtterance = new SpeechSynthesisUtterance(msg);
-  window.speechSynthesis.speak(speechSynthesisUtterance);
-}
-
-$("#readAloud").click(() => {
-  readAloud();
+  readAloud(msg);
 });
+
+// 求救
+$("#sos").click(() => {
+  let msg = "当前顾客需要帮助！当前顾客需要帮助！当前顾客需要帮助！";
+
+  readAloud(msg);
+});
+
+// 语音识别
+// 目前只有Chrome和Edge支持该特性，在使用时需要加私有化前缀
+const SpeechRecognition = window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+recognition.lang = "cmn-Hans-CN"; //普通话 (中国大陆)
+const output = document.getElementById("output");
+
+// 语音识别开始的钩子
+recognition.onstart = function () {
+  output.innerText = "";
+  output.innerText = "语音识别开始";
+};
+// 如果没有声音则结束的钩子
+recognition.onspeechend = function () {
+  output.innerText = "语音识别结束";
+  recognition.stop();
+};
+// 识别错误的钩子
+recognition.onerror = function ({ error }) {
+  const errorMessage = {
+    "not-speech": "未检测到声源",
+    "not-allowed": "未检测到麦克风设备或未允许浏览器使用麦克风",
+  };
+  output.innerText = errorMessage[error] || "语音识别错误";
+};
+
+// 识别结果的钩子，
+// 可通过interimResults控制是否实时识别，maxAlternatives设置识别结果的返回数量
+recognition.onresult = function ({ results }) {
+  console.log(results);
+  const { transcript, confidence } = results[0][0];
+  output.innerText = `识别的内容：${transcript}`;
+};

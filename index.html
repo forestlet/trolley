@@ -23,8 +23,20 @@
 					</svg>
 				</button>
 				<h3> 🛒 智能购物系统 </h3>
-				<button type="button" class="btn btn-lg btn-primary" id="readAloud"> 🔈 </button>
+
+				<div class="btn-group" role="group" aria-label="Basic example">
+					<button type="button" class="btn btn-lg btn-outline-secondary" id="voice_recognition_start"
+						onclick="recognition.start()">
+						🎙️ </button>
+					<button type="button" class="btn btn-lg btn-outline-secondary" id="voice_recognition_end"
+						onclick="recognition.start()">
+						⏸️ </button>
+					<button type="button" class="btn btn-lg btn-outline-primary" id="readAloud"> 🔈 </button>
+					<button type="button" class="btn btn-lg btn-outline-danger" id="sos"> 🚨 </button>
+				</div>
 			</div>
+
+			<p id="output"></p>
 		</nav>
 
 		<div class="container text-center main">
