@@ -285,7 +285,7 @@ recognition.onresult = function ({ results }) {
   const { transcript, confidence } = results[0][0];
   output.innerText = `识别的内容：${transcript}`;
 
-  search_good(transcript);
+  search_good(transcript.toString());
 };
 
 // 查找商品
