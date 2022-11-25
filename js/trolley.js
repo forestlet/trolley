@@ -273,7 +273,8 @@ recognition.onerror = function ({ error }) {
     "not-speech": "未检测到声源",
     "not-allowed": "未检测到麦克风设备或未允许浏览器使用麦克风",
   };
-  output.innerText = errorMessage[error] || "语音识别错误";
+  // output.innerText = errorMessage[error] || "语音识别错误";
+  output.innerText = error
 };
 
 // 识别结果的钩子，
